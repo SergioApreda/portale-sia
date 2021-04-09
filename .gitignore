@@ -62,6 +62,8 @@ writable/uploads/*
 
 writable/debugbar/*
 
+public/upload/*
+
 php_errors.log
 
 #-------------------------
@@ -125,3 +127,4 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
