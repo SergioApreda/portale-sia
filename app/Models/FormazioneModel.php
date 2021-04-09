@@ -190,6 +190,7 @@ class FormazioneModel extends Model
 
     public function attribuisciAttestatoRisorsa($attestato_disponibile_id,$data_inizio,$data_fine,$anagrafica_id){
         
+		
         $data = [
             'fk_anagrafica' => $anagrafica_id,
             'fk_attestato'  => $attestato_disponibile_id,
@@ -197,6 +198,7 @@ class FormazioneModel extends Model
             'data_fine' => $data_fine,
             'valido' => 1
         ];
+
         $builder = $this->db->table('tb_anagrafica_attestato');
         $id=$builder->insert($data);
 

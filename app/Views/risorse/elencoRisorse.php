@@ -73,7 +73,7 @@
                                     echo "<td>" . $elencoRisorse[$i]['commessa'] . "</td>";
 
                                     if (!empty($elencoRisorse[$i]['data_inizio_commessa']))
-                                     echo "<td>" . date('d/m/Y',strtotime($elencoRisorse[$i]['data_inizio_commessa'])) . "</td>"; 
+                                     echo "<td>".date('d/m/Y',strtotime($elencoRisorse[$i]['data_inizio_commessa']))."</td>"; 
                                     else
                                      echo "<td></td>"; 
                                     
@@ -175,7 +175,7 @@
                     <label>Data inizio</label>
                     <input type="date" name="data_inizio" class='form-control form-control-sm data_inizio'>
                     <label>Data fine</label>
-                    <input type="date" name="data_fine" class='form-control form-control-sm data_fine' readonly>
+                    <input type="text" name="data_fine" class='form-control form-control-sm data_fine' readonly>
                 </div>
 
             </div>
@@ -220,7 +220,7 @@
 
     $(document).ready(function() {
 
-        var durata_mesi_attestato_selezionato = ""; 
+        var durata_attestato = ""; 
         var arrayValoriAttestati = []; 
         var attestati_id_array_validi = [];
         var attestati_id_array_non_validi = [];
@@ -639,7 +639,7 @@
                         url: "ottieniInformazioniAttestato/"+$(this).val(),
                         success: function (response) {
                             // console.log("Responso: "+response)
-                            durata_mesi_attestato_selezionato = response
+                            durata_attestato = response
                         }
                     });
 
@@ -647,30 +647,9 @@
             });
 
             $('.data_inizio').change(function(){
-                var data_selezionata = $(this).val();
-                data_selezionata = data_selezionata.split("-");
-                 
-                var giorno_selezionato = data_selezionata[2]; 
-                var mese_selezionato = data_selezionata[1]; 
-                var anno_selezionato = data_selezionata[0]; 
-                dts = new Date(anno_selezionato,mese_selezionato,giorno_selezionato);
-               // console.log("Responso: "+durata_mesi_attestato_selezionato)
-                dts.setMonth(dts.getMonth() + parseInt(durata_mesi_attestato_selezionato)); // calcolo il nuovo mese di fine
-
-                var day = dts.getDate();
-                var mm = dts.getMonth();
-                var yyyy = dts.getFullYear();
-
-                if ( day <= 9 )
-                    day = "0"+day;
-                
-                if ( mm == 0 )
-                    mm = 1; 
-                if ( mm <= 9 )
-                    mm = "0"+mm;
-
-                $('.data_fine').val(yyyy+"-"+mm+"-"+day);
-                        
+                var fine =  new moment($(this).val(), "YYYY-MM-DD");
+				fine.add(parseInt(durata_attestato), 'months');
+			$('.data_fine').val(fine.format("DD/MM/YYYY"));
         });
 
 /*
@@ -741,8 +720,11 @@
                 $(".loader").show();
              
                 var attestatoDisponibile = $('.attestatoDisponibile').val(); 
-                var data_inizio = $('.data_inizio').val(); 
-                var data_fine = $('.data_fine').val(); 
+                var data_inizio = $('.data_inizio').val();
+
+				// monkey-patching
+                var data_fine = new moment($('.data_fine').val(), "DD/MM/YYYY");
+				data_fine = data_fine.format("YYYY-MM-DD");
 
                 if ( attestatoDisponibile != "" && data_inizio != "" && data_fine != ""  ){
                     $.ajax({

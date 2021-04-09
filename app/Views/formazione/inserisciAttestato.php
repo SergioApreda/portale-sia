@@ -44,7 +44,7 @@
                          </div>
                          <div class="form-group col-md-6">
                              <label for="inputPassword4">Durata in mesi</label>
-                             <input type="number" class="form-control" min='1' max='90' name='durata_in_mesi' required >
+                             <input type="number" class="form-control" min='1' max='96' name='durata_in_mesi' required >
                          </div>
                      </div>
                      <button type='submit' class='btn btn-success btn-sm'>Inserisci attestato</button>

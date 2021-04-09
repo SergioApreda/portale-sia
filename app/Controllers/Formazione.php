@@ -163,13 +163,15 @@ class Formazione extends BaseController{
         $nome_attestato = $ottieniInformazioniAttestato[0]['descrizione']; 
 
         $nome_attestato=$this->clean($nome_attestato);
-       // $nome_attestato=str_replace(" ","_",$nome_attestato); 
-       /* $nome_attestato = str_replace("\\","_",$nome_attestato); 
+       /* $nome_attestato=str_replace(" ","_",$nome_attestato); 
+        $nome_attestato = str_replace("\\","_",$nome_attestato); 
         $nome_attestato = str_replace("*","_",$nome_attestato); 
         $nome_attestato = str_replace("/","_",$nome_attestato);
         $nome_attestato = str_replace("&","_",$nome_attestato);
         $nome_attestato = str_replace("%","_",$nome_attestato);
-        $nome_attestato = str_replace("£","_",$nome_attestato);*/    
+        $nome_attestato = str_replace("£","_",$nome_attestato); 
+        $nome_attestato = str_replace('"',"_",$nome_attestato); 
+        $nome_attestato = str_replace('-',"_",$nome_attestato); */
 
         $path = "upload/attestati_formazione/".$anagrafica_id;
 
@@ -262,7 +264,9 @@ class Formazione extends BaseController{
         $string = str_replace('%', '_', $string);      
         $string = str_replace('\'', '_', $string);
         $string = str_replace('\"', '_', $string);
-        $string = str_replace('^', '_', $string);             
+        $string = str_replace('^', '_', $string);   
+        $string = str_replace('"', '_', $string);     
+        
      
         return $string; 
      }
