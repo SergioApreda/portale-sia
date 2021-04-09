@@ -1,3 +1,4 @@
+
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper" style='background-color:white'>
      <!-- Content Header (Page header) -->
@@ -101,7 +102,9 @@
 
      <div class='container-fluid'>
          <div class='row'>
-             <div class='col-md-6'>
+
+         
+             <div class='col-md-12'>
                  <div class="card card-outline card-primary">
                      <div class="card-header" style='background-color:#fff'>
                          <h3 class="card-title text-danger">Attestati in scadenza nei prossimi 10 giorni</h3>
@@ -141,7 +144,11 @@
                      </div>
                  </div>
              </div>
-             <div class='col-md-6'>
+
+
+
+
+             <div class='col-md-12'>
                  <div class="card card-outline card-primary">
                      <div class="card-header" style='background-color:#fff'>
                          <h3 class="card-title text-danger">Schede carburanti con importi maggiori di <b>100 €</b></h3>
@@ -149,25 +156,22 @@
                          </div>
                      </div>
                      <div class="card-body">
-                         <table id="tabella_risorse"
-                             class="table table-sm table-striped table-bordered dt-responsive nowrap" width="100%"
-                             cellspacing="0">
+                         <table id="tabella_risorse"  class="table table-sm table-striped table-bordered dt-responsive " width="100%"  cellspacing="0">
+                            
                              <thead>
                                  <tr>
                                      <th>Scheda carburante</th>
                                      <th>Importo</th>
-                                 </tr>
-                                 <tr class="filters">
-                                     <th>Scheda carburante</th>
-                                     <th>Importo</th>
-                                 </tr>
+                                 </tr>          
                              </thead>
+
+
                              <tbody>
-                                 <?php 
+                             <?php 
                                 for($i=0; $i<count($schede_carburanti); $i++){
                                     echo "<tr>"; 
-                                    echo "<td><a href='/dettaglioConsumiCarburante/{$schede_carburanti[$i]['numero_carta']}'>".ucfirst(strtolower($schede_carburanti[$i]['numero_carta']))."</a></td>";
-                                    echo "<td class='text-danger'><b>".ucfirst(strtolower($schede_carburanti[$i]['importo']))." €</b></td>";
+                                        echo "<td><a href='/dettaglioConsumiCarburante/{$schede_carburanti[$i]['numero_carta']}'>".ucfirst(strtolower($schede_carburanti[$i]['numero_carta']))."</a></td>";
+                                        echo "<td class='text-danger'><b>".ucfirst(strtolower($schede_carburanti[$i]['importo']))." €</b></td>";
                                     echo "</tr>"; 
                                 }
                              ?>
@@ -176,11 +180,10 @@
                      </div>
                  </div>
              </div>
+
+
          </div>
      </div>
-
-
-
 
      <!-- /.content -->
  </div>
