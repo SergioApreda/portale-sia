@@ -62,7 +62,7 @@ writable/uploads/*
 
 writable/debugbar/*
 
-public/upload/*
+public/upload/
 
 php_errors.log
 
